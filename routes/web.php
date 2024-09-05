@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('permissions', PermissionController::class);
 
 //Route Hooks - Do not delete//

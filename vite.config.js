@@ -8,7 +8,11 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
             ],
-            refresh: true,
+            refresh: [
+                'resources/views/**/*.blade.php', 
+                'resources/js/**/*.js', 
+                'resources/css/**/*.css'
+            ],
         }),
     ],
 });

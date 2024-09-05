@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PermissionRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Route;
 
 class PermissionController extends Controller
 {
@@ -29,7 +30,18 @@ class PermissionController extends Controller
     {
         $permission = new Permission();
 
-        return view('permission.create', compact('permission'));
+        $routesList =  collect(Route::getRoutes())
+            ->map(function ($route) {
+                return $route->getName() ?: $route->uri();
+            })
+            ->filter(function ($route) {
+                return !is_null($route);
+            })
+            ->sort()
+            ->values()
+            ->toArray();
+
+        return view('permission.create', compact('permission', 'routesList'));
     }
 
     /**
@@ -60,7 +72,18 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($id);
 
-        return view('permission.edit', compact('permission'));
+        $routesList =  collect(Route::getRoutes())
+            ->map(function ($route) {
+                return $route->getName() ?: $route->uri();
+            })
+            ->filter(function ($route) {
+                return !is_null($route);
+            })
+            ->sort()
+            ->values()
+            ->toArray();
+
+        return view('permission.edit', compact('permission', 'routesList'));
     }
 
     /**

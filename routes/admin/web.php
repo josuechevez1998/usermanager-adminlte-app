@@ -18,15 +18,19 @@ Route::prefix('admin')
             ->middleware('permission:permissions.create')
             ->name('permissions.store');
 
-        Route::get('permissions/{permission}', [PermissionController::class, 'edit'])
+        Route::get('permissions/{permission}/show', [PermissionController::class, 'show'])
+            ->middleware('permission:permissions.show')
+            ->name('permissions.show');
+
+        Route::get('permissions/{permission}/edit', [PermissionController::class, 'edit'])
             ->middleware('permission:permissions.edit')
             ->name('permissions.edit');
 
-        Route::put('permissions/{permission}', [PermissionController::class, 'update'])
+        Route::put('permissions/{permission}/update', [PermissionController::class, 'update'])
             ->middleware('permission:permissions.edit')
             ->name('permissions.update');
 
-        Route::delete('permissions/{permission}', [PermissionController::class, 'destroy'])
+        Route::delete('permissions/{permission}/delete', [PermissionController::class, 'destroy'])
             ->middleware('permission:permissions.delete')
             ->name('permissions.destroy');
     });

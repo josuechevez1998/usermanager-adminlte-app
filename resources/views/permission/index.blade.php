@@ -27,9 +27,12 @@
                             </div>
                         </div>
                     </div>
+
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success m-4">
-                            <p>{{ $message }}</p>
+                        <div class="p-3">
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
                         </div>
                     @endif
 

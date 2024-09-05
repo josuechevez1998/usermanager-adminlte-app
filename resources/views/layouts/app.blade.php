@@ -7,15 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@hasSection('title') @yield('title') | @endif {{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/js/app.js'])
-    @livewireStyles
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
@@ -30,11 +29,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-					@auth()
-                    <ul class="navbar-nav mr-auto">
-						<!--Nav Bar Hooks - Do not delete!!-->
+                    <ul class="navbar-nav me-auto">
+
                     </ul>
-					@endauth()
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -79,14 +76,5 @@
             @yield('content')
         </main>
     </div>
-    @livewireScripts
-    <script type="module">
-        const addModal = new bootstrap.Modal('#createDataModal');
-        const editModal = new bootstrap.Modal('#updateDataModal');
-        window.addEventListener('closeModal', () => {
-           addModal.hide();
-           editModal.hide();
-        })
-    </script>
 </body>
 </html>

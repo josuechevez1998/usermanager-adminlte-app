@@ -8,6 +8,7 @@
         "php": "^8.2",
         "flightsadmin/livewire-crud": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "ibex/crud-generator": "^2.1",
         "jeroennoten/laravel-adminlte": "^3.13",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",

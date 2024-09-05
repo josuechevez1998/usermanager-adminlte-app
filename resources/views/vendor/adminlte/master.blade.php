@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
     {{-- Custom Meta Tags --}}
     @yield('meta_tags')
 

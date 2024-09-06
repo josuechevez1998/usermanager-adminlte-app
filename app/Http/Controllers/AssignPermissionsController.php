@@ -19,15 +19,6 @@ class AssignPermissionsController extends Controller
 
     public function changeAssignPermission(Request $request, Role $role)
     {
-        // Verificar si el permiso ya está asignado
-        if ($role->hasPermissionTo($request->permission)) {
-            // Si está asignado, se elimina
-            $role->revokePermissionTo($request->permission);
-        } else {
-            // Si no está asignado, se agrega
-            $role->givePermissionTo($request->permission);
-        }
 
-        return redirect()->back()->with('success', 'Permission updated successfully');
     }
 }

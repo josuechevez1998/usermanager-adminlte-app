@@ -6,7 +6,6 @@
     <h1>Permission</h1>
 @stop
 
-
 @section('content')
     <div class="container-fluid">
         <div class="row">

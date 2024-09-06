@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AssignPermissionsController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +44,17 @@ Route::prefix('admin')
     ->middleware(['auth', 'role:System'])
     ->group(function () {
         Route::resource('users', UserController::class);
+    });
+
+Route::prefix('admin')
+    ->middleware(['auth', 'role:System'])
+    ->group(function () {
+        Route::resource('roles', RoleController::class);
+        Route::get('/roles/{role}/assign-permission', [AssignPermissionsController::class, 'index'])
+            ->name('roles.assignPermissions');
+
+        Route::post('/roles/{role}/assign-permission', [AssignPermissionsController::class, 'changeAssignPermission'])
+            ->name('roles.changeAssignPermission');
+
+        Route::resource('role-has-permissions', RoleHasPermissionController::class);
     });

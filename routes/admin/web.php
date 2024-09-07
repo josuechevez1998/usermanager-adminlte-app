@@ -53,8 +53,8 @@ Route::prefix('admin')
         Route::get('/roles/{role}/assign-permission', [AssignPermissionsController::class, 'index'])
             ->name('roles.assignPermissions');
 
-        Route::post('/roles/{role}/assign-permission', [AssignPermissionsController::class, 'changeAssignPermission'])
-            ->name('roles.changeAssignPermission');
+        Route::post('/roles/{role}/assign-permission', [AssignPermissionsController::class, 'updatePermissions'])
+            ->name('roles.updatePermissions');
 
         Route::resource('role-has-permissions', RoleHasPermissionController::class);
     });

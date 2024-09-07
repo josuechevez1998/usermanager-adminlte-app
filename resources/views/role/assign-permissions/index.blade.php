@@ -37,7 +37,7 @@
                                         <strong>Access From:</strong> {{ $permission->guard_name }}
                                     </div>
                                     <div class="card-footer p-3">
-                                        <form action="{{ route('roles.assignPermissions', ['role' => $role->id]) }}" method="POST">
+                                        <form action="{{ route('roles.updatePermissions', ['role' => $role->id]) }}" method="POST">
                                             @csrf
                                             <div class="form-check">
                                                 <input type="checkbox"

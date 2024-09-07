@@ -12,6 +12,7 @@ export default defineConfig({
             refresh: [
                 'resources/views/**/*.blade.php',
                 'app/Http/Livewire/**/*.php',
+                'config/adminlte.php',
                 'routes/**/*.php',
                 'resources/js/**/*.js', 
                 'resources/css/**/*.css',

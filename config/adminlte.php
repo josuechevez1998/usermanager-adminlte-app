@@ -334,12 +334,29 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'multilevel',
+            'text' => 'settings',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'users',
+                    'route' => 'users.index',
+                    'can' => [
+                        'users.index'
+                    ]
+                ],
+                [
+                    'text' => 'roles',
+                    'route' => 'roles.index',
+                    'can' => [
+                        'roles.index'
+                    ]
+                ],
+                [
+                    'text' => 'permissions',
+                    'route' => 'permissions.index',
+                    'can' => [
+                        'permissions.index'
+                    ]
                 ],
                 [
                     'text' => 'level_one',

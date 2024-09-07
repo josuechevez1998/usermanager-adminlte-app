@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Users
-@endsection
+@section('title', __('Users'))
+
+@section('content_header')
+    <h1>{{ __('Users') }}</h1>
+@stop
 
 @section('content')
     <div class="container-fluid">
@@ -51,9 +53,11 @@
 										<td >{{ $user->email }}</td>
 
                                             <td>
+                                                
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('users.show', $user->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('users.edit', $user->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-warning" href="{{ route('users.resetPassword', $user->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Reset Password') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

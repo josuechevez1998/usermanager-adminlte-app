@@ -6,8 +6,11 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -37,11 +40,25 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+        // Generar una contraseña aleatoria
+        $password = $this->generatePassword();
+
+        // Crear el usuario con la contraseña hashada
+        $newUser = User::create(array_merge(
+            $request->validated(),
+            ['password' => Hash::make($password)]
+        ));
+
+        // Generar un token de restablecimiento de contraseña
+        $token = Password::broker()->createToken($newUser);
+
+        // Enviar notificación de restablecimiento de contraseña
+        $newUser->sendPasswordResetNotification($token);
 
         return Redirect::route('users.index')
             ->with('success', 'User created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -80,5 +97,36 @@ class UserController extends Controller
 
         return Redirect::route('users.index')
             ->with('success', 'User deleted successfully');
+    }
+
+    /**
+     * Enviar correo nativo de larave 
+     * para resturar contraseña
+     */
+    public function resetPassword(User $user)
+    {
+
+        // Generar un token de restablecimiento de contraseña
+        $token = Password::broker()
+            ->createToken($user);
+
+        // Enviar notificación de restablecimiento de contraseña
+        $user->sendPasswordResetNotification($token);
+
+        session()->flash('success', __('The password is reset'));
+
+        return redirect()->route('users.index')
+            ->with('success', __('Password reset email sents'));
+    }
+
+
+    /**
+     * Generar contraseña para nuevos usuario
+     * 
+     * @return string nueva contraseña
+     */
+    public function generatePassword()
+    {
+        return Str::password(8, true, true, false, false);
     }
 }

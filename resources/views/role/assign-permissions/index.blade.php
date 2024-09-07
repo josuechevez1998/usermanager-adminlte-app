@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Permission')
+@section('title', __('Roles'))
 
 @section('content_header')
-    <h1>Permission</h1>
+    <h1>{{ __('Assign') }}</h1>
 @stop
 
 @section('content')

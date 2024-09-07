@@ -44,6 +44,8 @@ Route::prefix('admin')
     ->middleware(['auth', 'role:System'])
     ->group(function () {
         Route::resource('users', UserController::class);
+        Route::get('users/{user}/reset-password', [UserController::class, 'resetPassword'])
+            ->name('users.resetPassword');
     });
 
 Route::prefix('admin')

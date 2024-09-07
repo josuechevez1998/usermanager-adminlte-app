@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Roles
-@endsection
+@section('title', __('Roles'))
+
+@section('content_header')
+    <h1>{{ __('Roles') }}</h1>
+@stop
 
 @section('content')
     <div class="container-fluid">

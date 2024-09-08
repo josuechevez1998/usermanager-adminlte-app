@@ -23,6 +23,13 @@
                             </a>
                         </div>
                     </div>
+                    @if ($message = Session::get('success'))
+                        <div class="p-3">
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -37,21 +44,30 @@
                                         <strong>Access From:</strong> {{ $permission->guard_name }}
                                     </div>
                                     <div class="card-footer p-3">
-                                        <form action="{{ route('roles.updatePermissions', ['role' => $role->id]) }}" method="POST">
+                                        <form
+                                            action="{{ route(in_array($permission->name, $roleAssignPermissions) ? 'roles.revoke-permission' : 'roles.assign-permission', ['role' => $role->id]) }}"
+                                            method="POST">
                                             @csrf
+                                            @method('POST')
+
+                                            <!-- Campo hidden que siempre envía un valor por defecto -->
+                                            <input type="hidden" name="permission-name" value="{{ $permission->name }}">
+
                                             <div class="form-check">
-                                                <input type="checkbox"
+                                                <input type="checkbox" 
                                                     id="permission-{{ $permission->id }}"
-                                                    name="permission"
+                                                    name="permission-{{ $permission->id }}" 
                                                     value="{{ $permission->name }}"
                                                     class="form-check-input"
                                                     {{ in_array($permission->name, $roleAssignPermissions) ? 'checked' : '' }}
-                                                    onclick="this.closest('form').submit();">
+                                                    onchange="this.form.submit();">
                                                 <label class="form-check-label">
                                                     {{ __('Assign') }}
                                                 </label>
                                             </div>
                                         </form>
+
+
                                     </div>
                                 </div>
                             </div>

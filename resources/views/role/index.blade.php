@@ -55,10 +55,6 @@
                                             <td>
                                                 <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
 
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('roles.assignPermissions', $role->id) }}">
-                                                        <i class="fa fa-fw fa-eye"></i>
-                                                        {{ __('Permissions') }}
-                                                    </a>
                                                     <a class="btn btn-sm btn-primary " href="{{ route('roles.show', $role->id) }}">
                                                         <i class="fa fa-fw fa-eye"></i>
                                                         {{ __('Show') }}
@@ -66,6 +62,10 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('roles.edit', $role->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i>
                                                         {{ __('Edit') }}
+                                                    </a>
+                                                    <a class="btn btn-sm btn-dark " href="{{ route('roles.assignPermissions', $role->id) }}">
+                                                        <i class="fas fa-lock-open"></i>
+                                                        {{ __('Permissions') }}
                                                     </a>
                                                     @csrf
                                                     @method('DELETE')

@@ -11,9 +11,9 @@ Route::middleware('auth')
         Route::put('users/profile/{user}/update', [UserSessionProfileController::class, 'update'])
             ->name('users.profile-update');
 
-        Route::get('admin/settings', [UserSessionProfileController::class, 'changePassword'])
+        Route::get('user/profile/change-password', [UserSessionProfileController::class, 'changePassword'])
             ->name('users-profile.change-password');
 
-        Route::put('user/profile/{user}/change-password', [UserSessionProfileController::class, 'updatePassword'])
+        Route::put('user/profile/{user}/update-password', [UserSessionProfileController::class, 'updatePassword'])
             ->name('users-profile.update-password');
     });

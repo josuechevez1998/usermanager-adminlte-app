@@ -5,6 +5,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSessionProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -39,11 +40,11 @@ Route::prefix('admin')
             ->name('permissions.destroy');
     });
 
-
 Route::prefix('admin')
     ->middleware(['auth', 'role:System'])
     ->group(function () {
         Route::resource('users', UserController::class);
+
         Route::get('users/{user}/reset-password', [UserController::class, 'resetPassword'])
             ->name('users.resetPassword');
     });

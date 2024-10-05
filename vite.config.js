@@ -14,9 +14,9 @@ export default defineConfig({
                 'app/Http/Livewire/**/*.php',
                 'config/adminlte.php',
                 'routes/**/*.php',
-                'resources/js/**/*.js', 
+                'resources/js/**/*.js',
                 'resources/css/**/*.css',
-                'resources/vendor/adminlte/*.blade.php'
+                'resources/vendor/adminlte/*.blade.php',
             ],
         }),
     ],

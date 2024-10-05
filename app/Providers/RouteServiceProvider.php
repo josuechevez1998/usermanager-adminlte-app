@@ -37,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(function () {
                     require base_path('routes/web.php');
                     require base_path('routes/admin/web.php');
+                    require base_path('routes/users/web.php');
                 });
         });
     }

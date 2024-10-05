@@ -1,0 +1,19 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserSessionProfileController;
+
+Route::middleware('auth')
+    ->group(function () {
+        Route::get('users/profile', [UserSessionProfileController::class, 'index'])
+            ->name('users.profile');
+
+        Route::put('users/profile/{user}/update', [UserSessionProfileController::class, 'update'])
+            ->name('users.profile-update');
+
+        Route::get('user/profile/change-password', [UserSessionProfileController::class, 'changePassword'])
+            ->name('users-profile.change-password');
+
+        Route::put('user/profile/{user}/update-password', [UserSessionProfileController::class, 'updatePassword'])
+            ->name('users-profile.update-password');
+    });

@@ -42,8 +42,8 @@
                                     <tr>
                                         <th>No</th>
 
-                                        <th>Name</th>
-                                        <th>Guard Name</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Guard Name') }}</th>
 
                                         <th></th>
                                     </tr>

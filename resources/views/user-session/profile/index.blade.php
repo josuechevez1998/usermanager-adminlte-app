@@ -30,7 +30,7 @@
         @method('PUT')
         @csrf
         <div class="card">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-dark">
                 <strong>{{ __('User Profile') }}</strong>
             </div>
             <div class="card-body">

@@ -30,7 +30,7 @@
         @method('PUT')
         @csrf
         <div class="card">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-dark">
                 <strong class="text-warning">
                     <i class="fas fa-exclamation-triangle"></i>
                     {{ __('Warning') }}

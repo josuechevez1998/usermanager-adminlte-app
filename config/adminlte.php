@@ -335,7 +335,7 @@ return [
         ],
         [
             'text' => 'settings',
-            'icon' => 'fas fa-fw fa-share',
+            'icon' => 'fas fa-fw fa-cogs',
             'submenu' => [
                 [
                     'text' => 'users',

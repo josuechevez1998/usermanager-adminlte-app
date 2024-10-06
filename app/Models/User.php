@@ -51,4 +51,15 @@ class User extends Authenticatable
     {
        return 'users/profile';
     }
+
+    public function adminlte_desc()
+    {
+        return auth()->user()->email;
+    }
+
+    public function adminlte_image()
+    {
+        return 'https://picsum.photos/300/300';
+    }
+
 }

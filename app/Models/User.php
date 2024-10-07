@@ -49,17 +49,26 @@ class User extends Authenticatable
 
     public function adminlte_profile_url()
     {
-       return 'users/profile';
+        return 'users/profile';
+    }
+
+    public function userPhoto()
+    {
+        return $this->hasOne(UserPhoto::class, 'user_id', 'id');
     }
 
     public function adminlte_desc()
     {
-        return auth()->user()->email;
+       return $this->email;
     }
 
     public function adminlte_image()
     {
-        return 'https://picsum.photos/300/300';
-    }
+        // Asume que la relación ya ha sido cargada
+        $userPhoto = $this->userPhoto;
 
+        if ($userPhoto) {
+            return asset('storage/' . $userPhoto->path . '/' . $userPhoto->name);
+        }
+    }
 }

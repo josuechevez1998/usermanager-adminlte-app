@@ -27,25 +27,30 @@
     @endif
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-2">
             <div class="card">
+                <div class="card-header bg-dark">
+                    <strong>Avatar User</strong>
+                </div>
                 <div class="card-body">
-                    <form
-                        enctype="multipart/form-data"
-                        action="{{ route('users-profile.upload-photo', ['user'=> $user]) }}"
+                    <form enctype="multipart/form-data" action="{{ route('users-profile.upload-photo', ['user' => $user]) }}"
                         method="POST">
                         @method('POST')
                         @csrf
-                        <img src="" alt="">
-                        <input type="file" name="userPhoto">
+                        <img src='{{ asset('storage/' . $user->userPhoto->path . '/' . $user->userPhoto->name) }}''
+                            alt="user-photo" class="w-75 img-fluid mx-auto d-block">
+                        <input type="file" name="avatar" class="form-control-file form-control-sm @error('avatar') is-invalid @enderror"">
+                        {!! $errors->first('avatar', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+
+                        <br>
                         <button type="submit" class="btn btn-sm btn-primary">
-                            {{ __('Save') }}
+                            {{ __('Upload') }}
                         </button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-10">
             <form action="{{ route('users.profile-update', ['user' => $user]) }}" method="POST">
                 @method('PUT')
                 @csrf

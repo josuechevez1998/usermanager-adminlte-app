@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -84,9 +85,20 @@ class UserSessionProfileController extends Controller
     public function uploadPhoto(Request $request, User $user)
     {
 
-        if ($request->file('userPhoto')) {
-            $request->userPhoto
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($request->file('avatar')) {
+
+            $request->avatar
                 ->store('public/avatars');
+
+            $newPhoto = new UserPhoto();
+            $newPhoto->name = $request->avatar->hashName();
+            $newPhoto->path = 'avatars';
+            $newPhoto->user_id = $user->id;
+            $newPhoto->save();
 
             return Redirect::route('users.profile')
                 ->with('success', __('Photo Updated'));

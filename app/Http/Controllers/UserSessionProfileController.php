@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class UserSessionProfileController extends Controller
 {
@@ -42,7 +43,7 @@ class UserSessionProfileController extends Controller
 
     public function changePassword()
     {
-        return view('user-session.change-password.index',[
+        return view('user-session.change-password.index', [
             'user' => auth()->user()
         ]);
     }
@@ -71,5 +72,24 @@ class UserSessionProfileController extends Controller
 
         return Redirect::route('users.profile')
             ->with('success', __('Password Updated'));
+    }
+
+    /**
+     * Subir foto de usuario
+     *
+     * @param Request $request
+     * @param User $user
+     * @return void
+     */
+    public function uploadPhoto(Request $request, User $user)
+    {
+
+        if ($request->file('userPhoto')) {
+            $request->userPhoto
+                ->store('public/avatars');
+
+            return Redirect::route('users.profile')
+                ->with('success', __('Photo Updated'));
+        }
     }
 }

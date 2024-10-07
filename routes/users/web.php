@@ -16,4 +16,7 @@ Route::middleware('auth')
 
         Route::put('user/profile/{user}/update-password', [UserSessionProfileController::class, 'updatePassword'])
             ->name('users-profile.update-password');
+
+        Route::post('user/profile/{user}/upload-photo', [UserSessionProfileController::class, 'uploadPhoto'])
+            ->name('users-profile.upload-photo');
     });

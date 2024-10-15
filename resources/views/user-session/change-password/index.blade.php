@@ -30,7 +30,7 @@
         @method('PUT')
         @csrf
         <div class="card">
-            <div class="card-header bg-dark">
+            <div class="card-header bg-dark p-3">
                 <strong class="text-warning">
                     <i class="fas fa-exclamation-triangle"></i>
                     {{ __('Warning') }}
@@ -38,9 +38,9 @@
                 <br>
                 <strong>{{ __('Updating your password will close all open sessions') }}</strong>
             </div>
-            <div class="card-body">
+            <div class="card-body p-5">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-3">
                         <div class="input-group mb-3">
                             <x-adminlte-input type="password" name="current_password" label="{{ __('Current Password') }}"
                                 placeholder="********" label-class="text-dark">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="input-group mb-3">
                             <x-adminlte-input type="password" name="password" label="{{ __('New Password') }}"
                                 placeholder="********" label-class="text-dark">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="input-group mb-3">
                             <x-adminlte-input type="password" name="reset_password"
                                 label="{{ __('Confirm New Password') }}" placeholder="********" label-class="text-dark">

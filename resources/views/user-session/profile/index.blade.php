@@ -26,39 +26,46 @@
         </div>
     @endif
 
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="card">
-                <div class="card-header bg-dark">
-                    <strong>Avatar User</strong>
-                </div>
-                <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route('users-profile.upload-photo', ['user' => $user]) }}"
-                        method="POST">
+    <div class="card">
+        <div class="card-header bg-dark">
+            <strong>{{ __('User Profile') }}</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-4 d-flex justify-content-center p-5">
+                    <form enctype="multipart/form-data"
+                        action="{{ route('users-profile.upload-photo', ['user' => $user]) }}" method="POST"
+                        class="w-100 text-center">
                         @method('POST')
                         @csrf
-                        <img src='{{ asset('storage/' . $user->userPhoto->path . '/' . $user->userPhoto->name) }}''
-                            alt="user-photo" class="w-75 img-fluid mx-auto d-block">
-                        <input type="file" name="avatar" class="form-control-file form-control-sm @error('avatar') is-invalid @enderror"">
+
+                        <div class="mb-4">
+                            <img src='{{ asset('storage/' . $user->userPhoto->path . '/' . $user->userPhoto->name) }}''
+                            alt="user-photo" class="w-25 img-fluid rounded-circle">
+                        </div>
+
+                        <div class="input-group mb-3 w-100">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon03">
+                                    {{ __('Upload') }}
+                                </button>
+                            </div>
+                            <div class="custom-file text-start">
+                                <input type="file" name="avatar"
+                                    class="custom-file-input @error('avatar') is-invalid @enderror">
+                                <label class="custom-file-label">{{ __('Choose File') }}</label>
+                            </div>
+                        </div>
+
                         {!! $errors->first('avatar', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
 
                         <br>
-                        <button type="submit" class="btn btn-sm btn-primary">
-                            {{ __('Upload') }}
-                        </button>
                     </form>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-10">
-            <form action="{{ route('users.profile-update', ['user' => $user]) }}" method="POST">
-                @method('PUT')
-                @csrf
-                <div class="card">
-                    <div class="card-header bg-dark">
-                        <strong>{{ __('User Profile') }}</strong>
-                    </div>
-                    <div class="card-body">
+                <div class="col-sm-8 p-5">
+                    <form action="{{ route('users.profile-update', ['user' => $user]) }}" method="POST">
+                        @method('PUT')
+                        @csrf
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group mb-3">
@@ -92,9 +99,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection

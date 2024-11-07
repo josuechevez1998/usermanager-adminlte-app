@@ -6,6 +6,7 @@ use App\Models\Permission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\PermissionRequest;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,8 @@ class PermissionController extends Controller
     {
         Permission::create($request->validated());
 
+        Artisan::call('permission:cache-reset');
+
         return Redirect::route('permissions.index')
             ->with('success', 'Permission created successfully.');
     }
@@ -93,6 +96,8 @@ class PermissionController extends Controller
     {
         $permission->update($request->validated());
 
+        Artisan::call('permission:cache-reset');
+
         return Redirect::route('permissions.index')
             ->with('success', 'Permission updated successfully');
     }
@@ -100,6 +105,8 @@ class PermissionController extends Controller
     public function destroy($id): RedirectResponse
     {
         Permission::find($id)->delete();
+
+        Artisan::call('permission:cache-reset');
 
         return Redirect::route('permissions.index')
             ->with('success', 'Permission deleted successfully');

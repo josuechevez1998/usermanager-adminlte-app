@@ -91,16 +91,20 @@ class UserSessionProfileController extends Controller
 
         if ($request->file('avatar')) {
 
-            // Verifica si el archivo existe antes de intentar eliminarlo
-            if (Storage::disk('public')->exists($user->userPhoto->path . "/" . $user->userPhoto->name)) {
-                Storage::disk('public')->delete($user->userPhoto->path . "/" . $user->userPhoto->name);
+
+            if (isset($user->userPhoto)) {
+                // Verifica si el archivo existe antes de intentar eliminarlo
+                if (Storage::disk('public')->exists($user->userPhoto->path . "/" . $user->userPhoto->name)) {
+                    Storage::disk('public')->delete($user->userPhoto->path . "/" . $user->userPhoto->name);
+                }
+
+
+                // eliminar foto actual de la db
+                $user->userPhoto->delete();
             }
 
             $request->avatar
                 ->store('public/avatars');
-
-            // eliminar foto actual de la db
-            $user->userPhoto->delete();
 
             $newPhoto = new UserPhoto();
             $newPhoto->name = $request->avatar->hashName();

@@ -39,10 +39,12 @@
                         @method('POST')
                         @csrf
 
-                        <div class="mb-4">
-                            <img src='{{ asset('storage/' . $user->userPhoto->path . '/' . $user->userPhoto->name) }}''
-                            alt="user-photo" class="w-25 img-fluid rounded-circle">
-                        </div>
+                        @if (isset($user->userPhoto))
+                            <div class="mb-4">
+                                <img src='{{ asset('storage/' . $user->userPhoto->path . '/' . $user->userPhoto->name) }}''
+                                    alt="user-photo" class="w-25 img-fluid rounded-circle">
+                            </div>
+                        @endif
 
                         <div class="input-group mb-3 w-100">
                             <div class="input-group-prepend">

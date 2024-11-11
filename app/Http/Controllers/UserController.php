@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -76,8 +77,10 @@ class UserController extends Controller
     public function edit($id): View
     {
         $user = User::find($id);
+        $roles = Role::all();
+        $userRoles = collect($user->roles);
 
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('user', 'roles', 'userRoles'));
     }
 
     /**

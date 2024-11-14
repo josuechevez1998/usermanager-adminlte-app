@@ -68,7 +68,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i
+                                                        onclick="event.preventDefault(); 
+                                                        confirm('{{ __('Are you sure to delete?') }}')  ? this.closest('form').submit() : false;"><i
                                                             class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>

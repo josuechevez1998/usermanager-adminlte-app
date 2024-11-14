@@ -37,5 +37,6 @@
     "Guard Name": "Nombre Guardia",
     "Create New": "Crear Nuevo",
     "Update": "Actualizar",
-    "Data Not Found": "Datos No Encontrados"
+    "Data Not Found": "Datos No Encontrados",
+    "Are you sure to delete?":"¿Estás segura de eliminar el registro?"
 }

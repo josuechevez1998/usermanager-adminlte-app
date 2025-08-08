@@ -64,3 +64,36 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Instalar dependencias
+
+Debe de tener instalado docker como minimo. Sigue los pasos en orden para hacer la instalacion correcta:
+
+```
+chmod +x ./docker/8.2/composer-install.sh
+```
+
+```
+./docker/8.2/composer-install.sh
+```
+
+```
+chmod +x ./docker/8.2/composer-install.sh
+```
+
+```
+./docker/8.2/composer-install.sh
+```
+
+Listo puede usar el proyecto con laravel sail o entorno tradicionales.
+
+# ENV
+Copia el archivo de ejemplo para las variables de entorno, por defecto se usa la base de datos de laravel sail. Si quieres usar otro tipo de conexion debes configurarlo manual.
+
+
+```
+cp .env.example .env
+```
+
+# Levantar servicios
+Si quieres usar Laravel sail crear un alias en tu terminal como el nombre sail, sino usaras esto puede usar un entorno tradicional como Laragon o XAMPP
